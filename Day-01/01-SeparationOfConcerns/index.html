@@ -25,10 +25,11 @@
         //Model
         function SalaryCalculator(){
             var data = {
-                basic : 0,
+                basic : 1000,
                 hra : 0,
                 da : 0,
-                tax : 0,
+                ma : 0,
+                tax : 20,
                 salary : 0
             };
             this.get = function(attrName){
@@ -45,6 +46,7 @@
             var eventHandlers = {
                 basic : null,
                 hra : null,
+                ma : null,
                 da : null,
                 tax : null,
                 salary : null
@@ -54,7 +56,7 @@
             }
         }
         SalaryCalculator.prototype.calculate = function(){
-            var gross = this.get('basic') + this.get('hra') + this.get('da');
+            var gross = this.get('basic') + this.get('hra') + this.get('da') + this.get('ma');
             var net = gross * ((100-this.get('tax'))/100);
             this.set('salary', net);
         }
